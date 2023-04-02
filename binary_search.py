@@ -1,3 +1,5 @@
+
+
 def binary_search(lo, hi, condition):
     """TODO - add docs"""
     while lo <= hi:
@@ -11,6 +13,22 @@ def binary_search(lo, hi, condition):
             lo = mid + 1
     return -1
 
+#function finds a query in a list of numbers in decreasing order 
+def locate_card(cards, query):
+    def condition(mid):
+        if cards[mid] == query:
+            if mid > 0 and cards[mid-1] == query:
+                return 'left'
+            else:
+                return 'found'
+        elif cards[mid] < query:
+            return 'left'
+        else:
+            return 'right'
+    
+    return binary_search(0, len(cards) - 1, condition)
+
+#function finds the starting and ending position of a number in a list of numbers in increasing order 
 def first_position(nums, target):
     def condition(mid):
         if nums[mid] == target:
